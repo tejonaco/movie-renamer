@@ -37,7 +37,7 @@ model, template = (
 )  # qwen2.5:7b
 
 
-path = "C:/Users/adrian/.ollama/models/blobs/" + model
+path = os.getenv("MODELS_PATH") + model
 
 
 def main():
@@ -58,7 +58,6 @@ def main():
 
     for movie in movies:
         try:
-
             file = MOVIES_DIR / movie
 
             if not os.path.isfile(file):
@@ -88,6 +87,7 @@ def main():
 
             file.rename(MOVIES_DIR / new_file)
         except:  # noqa
+            print(f"Error parsing {movie}")
             continue
 
 
